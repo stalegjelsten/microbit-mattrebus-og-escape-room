@@ -37,6 +37,11 @@ function startupDisplay () {
     basic.showString("#")
     basic.showNumber(oppgavenummer)
     basic.clearScreen()
+    basic.showString("#Tegn:")
+    basic.showNumber(svar.length)
+    if (velkomstMelding.length > 0) {
+        basic.showString(velkomstMelding)
+    }
 }
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     if (aktivt_tall <= 0) {
@@ -51,6 +56,7 @@ let aktivt_tall = 0
 let gjetning = ""
 let riktigGjettingsMelding = ""
 let feilGjettingsMelding = ""
+let velkomstMelding = ""
 let premie = ""
 let svar = ""
 let oppgavenummer = 0
@@ -61,7 +67,7 @@ svar = "1/3"
 // Denne variabelen er en tekststreng (string). Dette er premien eller hintet som elevene får med seg videre til neste oppgave
 premie = "K"
 // Denne meldingen vises til elevene før oppgaven. Kan f.eks. inneholde hint.
-let velkomstMelding = ""
+velkomstMelding = ""
 // Denne teksten vises til elevene dersom de gjetter feil. Kan f.eks. inneholde hint.
 feilGjettingsMelding = ""
 // Denne teksten vises til elevene hvis de gjetter riktig. Kan f.eks. inneholde instruksjoner om hvor de finner neste oppgave.
