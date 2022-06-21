@@ -7,14 +7,6 @@ input.onButtonPressed(Button.A, function () {
     basic.showString(alfabet.charAt(aktivt_tall))
 })
 input.onButtonPressed(Button.AB, function () {
-    if (aktivt_tall <= 0) {
-        aktivt_tall = alfabet.length
-    }
-    music.playSoundEffect(music.createSoundEffect(WaveShape.Sine, 500, 500, 255, 0, 15, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
-    aktivt_tall += -1
-    basic.showString(alfabet.charAt(aktivt_tall))
-})
-input.onButtonPressed(Button.B, function () {
     music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 400, 600, 255, 0, 100, SoundExpressionEffect.Warble, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
     gjetning = "" + gjetning + alfabet.charAt(aktivt_tall)
     aktivt_tall = -1
@@ -41,6 +33,14 @@ input.onButtonPressed(Button.B, function () {
         }
     }
     basic.clearScreen()
+})
+input.onButtonPressed(Button.B, function () {
+    if (aktivt_tall <= 0) {
+        aktivt_tall = alfabet.length
+    }
+    music.playSoundEffect(music.createSoundEffect(WaveShape.Sine, 500, 500, 255, 0, 15, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
+    aktivt_tall += -1
+    basic.showString(alfabet.charAt(aktivt_tall))
 })
 input.onGesture(Gesture.Shake, function () {
     gjetning = ""
