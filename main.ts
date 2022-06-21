@@ -8,7 +8,7 @@ input.onButtonPressed(Button.A, function () {
         aktivt_tall = -1
     }
     aktivt_tall += 1
-    basic.showString(alfabet.charAt(aktivt_tall),10)
+    basic.showString(alfabet.charAt(aktivt_tall),5)
 })
 function checkAnswer () {
     if (gjetning == svar) {
@@ -52,7 +52,7 @@ input.onButtonPressed(Button.B, function () {
         aktivt_tall = alfabet.length
     }
     aktivt_tall += -1
-    basic.showString(alfabet.charAt(aktivt_tall),10)
+    basic.showString(alfabet.charAt(aktivt_tall),5)
 })
 input.onGesture(Gesture.Shake, function () {
     music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 400, 600, 255, 0, 100, SoundExpressionEffect.Warble, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
@@ -97,8 +97,11 @@ let svar = ""
 let oppgavenummer = 0
 // Denne variabelen er et heltall (integer). Dette er oppgavenummeret eller postnummeret. Det kan hjelpe deg å sortere microbitene og det kan hjelpe elevene til å finne ut rekkefølgen på oppgavene.
 oppgavenummer = 1
-// Denne variabelen er en tekststreng (string). Strengen kan enten inneholde bokstaver eller tall. Hvis du bruker bokstaver må brukBokstaver settes til true. Hvis du bruker tall må brukBokstaver settes til false.
-svar = "KU"
+// Denne variabelen er en tekststreng (string). Strengen kan enten inneholde 3 ulike typer tegn:
+// 1. STORE BOKSTAVER
+// 2. små bokstaver
+// 3. tallene 0 til 9, samt kommategn og brøkstrek (0123456789,/)
+svar = "1/3"
 // Denne variabelen er en tekststreng (string). Dette er premien eller hintet som elevene får med seg videre til neste oppgave
 premie = "K"
 // Denne meldingen vises til elevene før oppgaven. Kan f.eks. inneholde hint.
