@@ -6,33 +6,42 @@ input.onButtonPressed(Button.A, function () {
     aktivt_tall += 1
     basic.showString(alfabet.charAt(aktivt_tall))
 })
+function checkAnswer () {
+    if (gjetning == svar) {
+        basic.showIcon(IconNames.Yes)
+        music.playSoundEffect(music.builtinSoundEffect(soundExpression.happy), SoundExpressionPlayMode.UntilDone)
+        basic.clearScreen()
+        basic.pause(100)
+        for (let index = 0; index < 3; index++) {
+            basic.showString(premie)
+            basic.pause(500)
+        }
+        if (riktigGjettingsMelding.length > 0) {
+            basic.showString(riktigGjettingsMelding)
+        }
+    } else {
+        basic.showIcon(IconNames.No)
+        gjetning = ""
+        music.playSoundEffect(music.builtinSoundEffect(soundExpression.sad), SoundExpressionPlayMode.UntilDone)
+        if (feilGjettingsMelding.length > 0) {
+            basic.showString(feilGjettingsMelding)
+        }
+    }
+}
 input.onButtonPressed(Button.AB, function () {
     music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 400, 600, 255, 0, 100, SoundExpressionEffect.Warble, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
     gjetning = "" + gjetning + alfabet.charAt(aktivt_tall)
     aktivt_tall = -1
     if (gjetning.length == svar.length) {
-        if (gjetning == svar) {
-            basic.showIcon(IconNames.Yes)
-            music.playSoundEffect(music.builtinSoundEffect(soundExpression.happy), SoundExpressionPlayMode.UntilDone)
-            basic.clearScreen()
-            basic.pause(100)
-            for (let index = 0; index < 3; index++) {
-                basic.showString(premie)
-                basic.pause(500)
-            }
-            if (riktigGjettingsMelding.length > 0) {
-                basic.showString(riktigGjettingsMelding)
-            }
-        } else {
-            basic.showIcon(IconNames.No)
-            gjetning = ""
-            music.playSoundEffect(music.builtinSoundEffect(soundExpression.sad), SoundExpressionPlayMode.UntilDone)
-            if (feilGjettingsMelding.length > 0) {
-                basic.showString(feilGjettingsMelding)
-            }
-        }
+        checkAnswer()
     }
-    basic.clearScreen()
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . # . .
+        . . . . .
+        . . . . .
+        `)
 })
 input.onButtonPressed(Button.B, function () {
     if (aktivt_tall <= 0) {
@@ -56,15 +65,14 @@ function startupDisplay () {
     if (velkomstMelding.length > 0) {
         basic.showString(velkomstMelding)
     }
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . # . .
+        . . . . .
+        . . . . .
+        `)
 }
-input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    if (aktivt_tall <= 0) {
-        aktivt_tall = alfabet.length
-    }
-    music.playSoundEffect(music.createSoundEffect(WaveShape.Sine, 500, 500, 255, 0, 15, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
-    aktivt_tall += -1
-    basic.showString(alfabet.charAt(aktivt_tall))
-})
 let aktivt_tall = 0
 let gjetning = ""
 let alfabet = ""
