@@ -33,6 +33,11 @@ input.onButtonPressed(Button.B, function () {
     }
     basic.clearScreen()
 })
+input.onGesture(Gesture.Shake, function () {
+    gjetning = ""
+    aktivt_tall = -1
+    basic.clearScreen()
+})
 function startupDisplay () {
     basic.showString("#")
     basic.showNumber(oppgavenummer)
@@ -62,6 +67,8 @@ let svar = ""
 let oppgavenummer = 0
 // Denne variabelen er et heltall (integer). Dette er oppgavenummeret eller postnummeret. Det kan hjelpe deg å sortere microbitene og det kan hjelpe elevene til å finne ut rekkefølgen på oppgavene.
 oppgavenummer = 1
+// Denne variabelen er en boolean (enten true eller false). Hvis du setter den til true så må svaret kun inneholde bokstaver. Dersom den settes til false må svaret kun inneholde tall.
+let brukBokstaver = false
 // Denne variabelen er en tekststreng (string). Strengen kan enten inneholde bokstaver eller tall. Hvis du bruker bokstaver må brukBokstaver settes til true. Hvis du bruker tall må brukBokstaver settes til false.
 svar = "1/3"
 // Denne variabelen er en tekststreng (string). Dette er premien eller hintet som elevene får med seg videre til neste oppgave
@@ -72,8 +79,6 @@ velkomstMelding = ""
 feilGjettingsMelding = ""
 // Denne teksten vises til elevene hvis de gjetter riktig. Kan f.eks. inneholde instruksjoner om hvor de finner neste oppgave.
 riktigGjettingsMelding = ""
-// Denne variabelen er en boolean (enten true eller false). Hvis du setter den til true så må svaret kun inneholde bokstaver. Dersom den settes til false må svaret kun inneholde tall.
-let brukBokstaver = false
 startupDisplay()
 gjetning = ""
 aktivt_tall = -1
