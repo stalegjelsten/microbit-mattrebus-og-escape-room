@@ -1,10 +1,14 @@
+input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
+    gjetning = ""
+    aktivt_tall = -1
+    basic.clearScreen()
+})
 input.onButtonPressed(Button.A, function () {
     if (aktivt_tall == alfabet.length) {
         aktivt_tall = -1
     }
-    music.playSoundEffect(music.createSoundEffect(WaveShape.Sine, 500, 500, 255, 0, 15, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
     aktivt_tall += 1
-    basic.showString(alfabet.charAt(aktivt_tall))
+    basic.showString(alfabet.charAt(aktivt_tall),10)
 })
 function checkAnswer () {
     if (gjetning == svar) {
@@ -13,18 +17,18 @@ function checkAnswer () {
         basic.clearScreen()
         basic.pause(100)
         for (let index = 0; index < 3; index++) {
-            basic.showString(premie)
+            basic.showString("" + (premie))
             basic.pause(500)
         }
         if (riktigGjettingsMelding.length > 0) {
-            basic.showString(riktigGjettingsMelding)
+            basic.showString("" + (riktigGjettingsMelding))
         }
     } else {
         basic.showIcon(IconNames.No)
         gjetning = ""
         music.playSoundEffect(music.builtinSoundEffect(soundExpression.sad), SoundExpressionPlayMode.UntilDone)
         if (feilGjettingsMelding.length > 0) {
-            basic.showString(feilGjettingsMelding)
+            basic.showString("" + (feilGjettingsMelding))
         }
     }
 }
@@ -47,14 +51,23 @@ input.onButtonPressed(Button.B, function () {
     if (aktivt_tall <= 0) {
         aktivt_tall = alfabet.length
     }
-    music.playSoundEffect(music.createSoundEffect(WaveShape.Sine, 500, 500, 255, 0, 15, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
     aktivt_tall += -1
-    basic.showString(alfabet.charAt(aktivt_tall))
+    basic.showString(alfabet.charAt(aktivt_tall),10)
 })
 input.onGesture(Gesture.Shake, function () {
-    gjetning = ""
+    music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 400, 600, 255, 0, 100, SoundExpressionEffect.Warble, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
+    gjetning = "" + gjetning + alfabet.charAt(aktivt_tall)
     aktivt_tall = -1
-    basic.clearScreen()
+    if (gjetning.length == svar.length) {
+        checkAnswer()
+    }
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . # . .
+        . . . . .
+        . . . . .
+        `)
 })
 function startupDisplay () {
     basic.showString("#")
@@ -63,7 +76,7 @@ function startupDisplay () {
     basic.showString("#Tegn:")
     basic.showNumber(svar.length)
     if (velkomstMelding.length > 0) {
-        basic.showString(velkomstMelding)
+        basic.showString("" + (velkomstMelding))
     }
     basic.showLeds(`
         . . . . .
