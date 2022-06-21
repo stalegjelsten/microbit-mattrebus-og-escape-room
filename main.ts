@@ -39,6 +39,7 @@ input.onButtonPressed(Button.B, function () {
             }
         }
     }
+    basic.clearScreen()
 })
 function startupDisplay () {
     basic.showString("#")
@@ -48,7 +49,7 @@ function startupDisplay () {
         basic.showString("Antall bokstaver:")
         basic.showNumber(svar.length)
     } else {
-        basic.showString("Siffer:")
+        basic.showString("Antall siffer:")
         basic.showNumber(svar.length)
     }
     if (velkomstMelding.length > 0) {
