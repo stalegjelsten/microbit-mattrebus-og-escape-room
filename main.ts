@@ -86,6 +86,9 @@ function startupDisplay () {
         . . . . .
         `)
 }
+/**
+ * HVIS DU BLANDER STORE OG SMÅ BOKSTAVER ELLER TALL I SVARET VIL IKKE PROGRAMMET FUNGERE!
+ */
 let aktivt_tall = 0
 let gjetning = ""
 let alfabet = ""
@@ -98,8 +101,8 @@ let oppgavenummer = 0
 // Denne variabelen er et heltall (integer). Dette er oppgavenummeret eller postnummeret. Det kan hjelpe deg å sortere microbitene og det kan hjelpe elevene til å finne ut rekkefølgen på oppgavene.
 oppgavenummer = 1
 // Denne variabelen er en tekststreng (string). Strengen kan enten inneholde 3 ulike typer tegn:
-// 1. STORE BOKSTAVER
-// 2. små bokstaver
+// 1. STORE BOKSTAVER (uten ÆØÅ)
+// 2. små bokstaver (uten æøå)
 // 3. tallene 0 til 9, samt kommategn og brøkstrek (0123456789,/)
 svar = "1/3"
 // Denne variabelen er en tekststreng (string). Dette er premien eller hintet som elevene får med seg videre til neste oppgave
@@ -111,6 +114,7 @@ feilGjettingsMelding = ""
 // Denne teksten vises til elevene hvis de gjetter riktig. Kan f.eks. inneholde instruksjoner om hvor de finner neste oppgave.
 riktigGjettingsMelding = ""
 startupDisplay()
+// Denne if-setningen sjekker om første tegn i svaret er en liten bokstav, en stor bokstav eller ingen av delene.
 if ("abcdefghijklmnopqrstuvwxyz".includes(svar.charAt(0))) {
     alfabet = "abcdefghijklmnopqrstuvwxyz"
 } else if ("ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(svar.charAt(0))) {
